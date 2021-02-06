@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>key的作用</title>
+</head>
+<body>
+<div id="test"></div>
+
+
+<!--引入react核心库-->
+<script type="text/javascript" src="../plugin/react.development.js"></script>
+<script type="text/javascript" src="../plugin/react-dom.development.js"></script>
+<script type="text/javascript" src="../plugin/babel.min.js"></script>
+<script type="text/javascript" src="../plugin/prop-types.js"></script>
+
+<script type="text/babel">
+
+    /**
+     * 经典面试题
+     * 1.react中key的作用？/或者是 为什么尽量不要用index作为key
+     * 使用index作为key在新增的内容 放index0的位置 前面的位置时 会全盘便利
+     * 原来100个 更新1个 应该新生成真实DOM1个 ======> 实际上生成了101次 如果数据量过大 1亿条数据 每次更新都是重新生成1亿新的DOM
+     * 所以 ========> 使用唯一标识作为key才是最合适的 用xxx.id
+     */
+    class PersonA extends React.Component {
+
+        state = {
+            persons:
+                [
+                    {id: '1', name: '张三', age: '18'},
+                    {id: '2', name: '李四', age: '20'}
+                ]
+        }
+
+        addPerson= ()=>{
+            //
+            const {persons} =this.state;
+            //
+            const p ={id: (persons.length+1), name: '小王', age: '18'}
+
+            //
+            this.setState({persons:[p,...persons]})
+        }
+
+        render() {
+            return (
+                <div>
+                    <h1>展示人员信息</h1>
+                    <button onClick={this.addPerson}>点击添加小王</button>
+                    <h2>使用index作为key</h2>
+                    <ul>
+                        {
+                            this.state.persons.map((personObj,index)=>{
+                                return <li key={index}>姓名: {personObj.name},年龄: {personObj.age}</li>
+                            })
+                        }
+                    </ul>
+
+                    <h2>使用id作为key</h2>
+                    <ul>
+                        {
+                            this.state.persons.map((personObj)=>{
+                                return <li key={personObj.id}>姓名: {personObj.name},年龄: {personObj.age}</li>
+                            })
+                        }
+                    </ul>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<PersonA/>, document.getElementById('test'));
+</script>
+</body>
+</html>

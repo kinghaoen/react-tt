@@ -1,0 +1,4 @@
+.bgk{
+    height: 300px;
+    background: linear-gradient(to left bottom, hsl(158, 100%, 85%) 0%,hsl(120, 100%, 85%) 100%);
+}

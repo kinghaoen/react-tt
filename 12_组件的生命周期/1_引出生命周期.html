@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>引出生命周期</title>
+</head>
+<body>
+<div id="test"></div>
+
+
+<!--引入react核心库-->
+<script type="text/javascript" src="../plugin/react.development.js"></script>
+<script type="text/javascript" src="../plugin/react-dom.development.js"></script>
+<script type="text/javascript" src="../plugin/babel.min.js"></script>
+<script type="text/javascript" src="../plugin/prop-types.js"></script>
+
+<script type="text/babel">
+
+    //声明组件
+    class Life extends React.Component {
+        state ={opacity: 1}
+
+        closeDiv = ()=>{
+            //先关闭定时器
+            //clearInterval(this.timer);
+            //写在组件
+            ReactDOM.unmountComponentAtNode(document.getElementById('test'));
+        }
+
+        //组件挂载完毕时执行
+        componentDidMount(){
+            //每隔200毫秒 降低透明度
+            this.timer = setInterval(()=>{
+                //获取当前的透明度
+                let newOpacity = this.state.opacity;
+                //修改透明度
+                newOpacity -= 0.01;
+                if(newOpacity <=0){
+                    newOpacity = 1
+                }
+                //给state赋值
+                this.setState({opacity: newOpacity})
+            },200)
+        }
+
+        //组件卸载时执行
+        componentWillUnmount(){
+            clearInterval(this.timer);
+        }
+
+        //初始化渲染
+        render() {
+
+            return <div>
+                <h2 style={{opacity:this.state.opacity}}>React 学不会怎么办?</h2>
+                <button onClick={this.closeDiv}>不活了</button>
+            </div>
+        }
+    }
+
+    //渲染组件
+    ReactDOM.render(<Life />,document.getElementById('test'));
+</script>
+
+</body>
+</html>

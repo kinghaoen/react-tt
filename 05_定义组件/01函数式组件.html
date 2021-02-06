@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01函数式组件</title>
+</head>
+<body>
+<div id="test"></div>
+
+<!--引入react核心库-->
+<script type="text/javascript" src="../plugin/react.development.js"></script>
+<script type="text/javascript" src="../plugin/react-dom.development.js"></script>
+<script type="text/javascript" src="../plugin/babel.min.js"></script>
+
+<script type="text/babel">
+    function Demo() {
+        console.log(this);
+        //这里的this不再指向window,由于babel开启了严格模式 现在没有指向window 所以是undefined
+        return <h1>这里是函数式组件</h1>;
+    }
+    ReactDOM.render(<Demo/>,document.getElementById('test'));
+</script>
+</body>
+</html>

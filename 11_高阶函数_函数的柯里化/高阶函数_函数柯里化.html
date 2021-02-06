@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>高阶函数_函数柯里化</title>
+</head>
+<body>
+<div id="test"></div>
+
+
+<!--引入react核心库-->
+<script type="text/javascript" src="../plugin/react.development.js"></script>
+<script type="text/javascript" src="../plugin/react-dom.development.js"></script>
+<script type="text/javascript" src="../plugin/babel.min.js"></script>
+<script type="text/javascript" src="../plugin/prop-types.js"></script>
+
+<script type="text/babel">
+    //声明组件
+    class LoginForm extends React.Component {
+        state ={
+            username:'',
+            password:''
+        }
+
+        login= (event)=>{
+            event.preventDefault();//333阻止表单提交
+
+            const {username,password}=this.state
+            alert('用户名：'+username+'密码：'+password)
+        }
+
+        /**
+         * 高阶函数：如果一个函数符合下面2个规范中的任何一个，那该函数就是高阶函数
+         *  1、若A函数，接收的参数是一个函数，那么A就可以称之为高阶函数
+         *  2、若A函数，调用的返回值依然是一个函数，那么A就可以称之为高阶函数
+         *
+         * 函数的柯里化：通过函数调用继续返回函数的方式，实现多次接收参数，最后统一处理的函数编码形式。
+         */
+
+        saveFormData= (dataType)=>{
+            return (event) => {
+                this.setState({[dataType]:event.target.value});
+            }
+        }
+
+
+        //333
+        render() {
+            return (
+                <form onSubmit={this.login}>
+                    <label>
+                        用户名：<input onChange={this.saveFormData('username')} type="text" placeholder="用户名"/>&nbsp;
+                    </label>
+
+                    <label>
+                        密码：<input onChange={this.saveFormData('password')} type="password" placeholder="密码"/>&nbsp;
+                    </label>
+
+                    <button>登录</button>
+                </form>
+            )
+        }
+    }
+
+    //渲染组件到dom
+    ReactDOM.render(<LoginForm />, document.getElementById('test'));
+</script>
+
+</body>
+</html>

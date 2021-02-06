@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>引出生命周期</title>
+</head>
+<body>
+<div id="test"></div>
+
+
+<!--引入react核心库-->
+<script type="text/javascript" src="../plugin/react.development.js"></script>
+<script type="text/javascript" src="../plugin/react-dom.development.js"></script>
+<script type="text/javascript" src="../plugin/babel.min.js"></script>
+<script type="text/javascript" src="../plugin/prop-types.js"></script>
+
+<script type="text/babel">
+
+    //声明组件
+    class Count extends React.Component {
+
+        constructor(props) {
+            console.log('Count---constructor');
+            super(props);
+            //初始化
+            this.state ={count: 0}
+        }
+
+
+        add = ()=>{
+            //获取当前值
+            const {count} = this.state;
+            //+1
+            this.setState({count: count+1})
+        }
+
+        //强制更新组件
+        force= ()=>{
+            this.forceUpdate();
+        }
+
+        static getDerivedStateFromProps(){
+            console.log('Count---getDerivedFromProps');
+            return null
+        }
+
+        //组件加载时执行
+        // UNSAFE_componentWillMount(){
+        //     console.log('Count---UNSAFE_componentWillMount')
+        // }
+
+        //组件挂载完毕时执行
+        componentDidMount(){
+            console.log('Count---componentDidMount')
+        }
+
+        //组件将要卸载时执行
+        componentWillUnmount(){
+            console.log('Count---componentWillUnmount')
+        }
+
+        //控制组件更新的阀门
+        shouldComponentUpdate(){
+            console.log('shouldComponentUpdate');
+            return true;
+        }
+
+        //组件将要更新的钩子
+        // UNSAFE_componentWillUpdate(){
+        //     console.log('UNSAFE_componentWillUpdate');
+        // }
+
+        //组件更新完毕的钩子
+        componentDidUpdate(){
+            console.log('componentDidUpdate');
+        }
+
+        //卸载组件
+        unmountComponent= ()=>{
+            ReactDOM.unmountComponentAtNode(document.getElementById('test'))
+        }
+
+        //初始化渲染
+        render() {
+            console.log('Count---render')
+            return <div>
+                <h2>求和{this.state.count}</h2>
+                <button onClick={this.add}>点我+1</button>
+                <button onClick={this.unmountComponent}>卸载组件</button>
+                <button onClick={this.force}>强制更新组件</button>
+            </div>
+        }
+    }
+
+
+    /**
+     * A B演示的UNSAFE_componentWillReceiveProps 即将弃用
+     */
+    class A extends React.Component{
+        state={carName:'奔驰'};
+
+        changeName= ()=>{
+            this.setState({carName:'奥拓'})
+        }
+
+        render(){
+            return(
+                <div>
+                    <h1>我是组件A</h1>
+                    <button onClick={this.changeName}>换车</button>
+                    <B carName={this.state.carName}/>
+                </div>
+            )
+        }
+    }
+
+    class B extends React.Component{
+        UNSAFE_componentWillReceiveProps(){
+            console.log('B-componentWillReceiveProps')
+        }
+        render(){
+            return(
+                <div>
+                    <h1>我是组件B,接收到的汽车名字是{this.props.carName}</h1>
+                </div>
+            )
+        }
+    }
+    //渲染组件
+    ReactDOM.render(<Count />,document.getElementById('test'));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>refs</title>
+</head>
+<body>
+<div id="test"></div>
+
+
+<!--引入react核心库-->
+<script type="text/javascript" src="../plugin/react.development.js"></script>
+<script type="text/javascript" src="../plugin/react-dom.development.js"></script>
+<script type="text/javascript" src="../plugin/babel.min.js"></script>
+<script type="text/javascript" src="../plugin/prop-types.js"></script>
+
+<script type="text/babel">
+    //声明组件
+    class Demo extends React.Component {
+
+        state={isHot: true}
+
+        ip1= ()=>{
+            const {input1} = this;
+            alert(input1.value)
+        }
+
+        changeWeather= ()=>{
+
+            const {isHot} =this.state;
+            this.setState({isHot:!isHot})
+        }
+
+        classRefs= (currentNode)=>{
+            this.input1 = currentNode;
+            console.log('@',currentNode);
+        }
+
+        render() {
+            return (
+                <div>
+                    <h1>今天的天气很{this.state.isHot? '炎热': '寒冷'}</h1>
+                    <label>
+                        {/*<input ref={(currentNode)=>{this.input1=currentNode;
+                        console.log('@',currentNode)}} type="text" placeholder="点击按钮提示"/>&nbsp;*/}
+                        <input ref={this.classRefs} type="text" placeholder="点击按钮提示"/>&nbsp;
+                    </label>
+                        <button type="button" onClick={this.ip1}>点我alert左侧的数据</button>
+                        <button type="button" onClick={this.changeWeather}>点我改变天气</button>
+                </div>
+            )
+        }
+    }
+
+    //渲染组件到dom
+    ReactDOM.render(<Demo />, document.getElementById('test'));
+</script>
+
+</body>
+</html>

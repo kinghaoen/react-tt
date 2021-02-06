@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1_验证diffing算法</title>
+</head>
+<body>
+<div id="test"></div>
+
+
+<!--引入react核心库-->
+<script type="text/javascript" src="../plugin/react.development.js"></script>
+<script type="text/javascript" src="../plugin/react-dom.development.js"></script>
+<script type="text/javascript" src="../plugin/babel.min.js"></script>
+<script type="text/javascript" src="../plugin/prop-types.js"></script>
+
+<script type="text/babel">
+    class Time extends React.Component{
+        state={date:new Date()}
+
+        //组件完成挂载之后 执行...
+        componentDidMount(){
+            setInterval(()=>{
+                this.setState({date: new Date()})
+            },1000)
+        }
+
+        /**
+         * diffing算法 只更新修改的节点
+         * 如果修改的节点 内部有节点 继续对比 如果没有更新 还保持原来节点的内容
+         * 比如 北京时间更新了 但是input里的内容不会改变 因为子节点没有变
+         */
+        render(){
+            return(
+                <div>
+                    <div>中国时间</div>
+                    <div>
+                        北京时间：{this.state.date.toString()}
+                        <label>
+                            <input type="text"/>
+                        </label>
+                    </div>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<Time />,document.getElementById('test'));
+</script>
+</body>
+</html>

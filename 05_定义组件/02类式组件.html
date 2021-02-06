@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02类式组件</title>
+</head>
+<body>
+
+<div id="test"></div>
+
+<!--引入react核心库-->
+<script type="text/javascript" src="../plugin/react.development.js"></script>
+<script type="text/javascript" src="../plugin/react-dom.development.js"></script>
+<script type="text/javascript" src="../plugin/babel.min.js"></script>
+
+<script type="text/babel">
+    //创建类式组件  必须继承React.Component
+    class MyComponent extends React.Component{
+
+        render(){
+            console.log('MyComponent中的this: ',this);
+            return <h1>这里是函数式组件</h1>;
+        }
+
+
+    }
+
+    ReactDOM.render(<MyComponent />,document.getElementById('test'));
+</script>
+
+</body>
+</html>
