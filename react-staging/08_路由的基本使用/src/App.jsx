@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Home from './pages/home';
-import About from './pages/about';
+import Home from './components/home';
+import About from './components/about';
 import {Route,Link} from 'react-router-dom'
 
 class App extends Component {
