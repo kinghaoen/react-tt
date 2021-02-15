@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class Index extends Component {
+class Home extends Component {
     render() {
         return (
             <h3>我是Home的内容</h3>
@@ -8,4 +8,4 @@ class Index extends Component {
     }
 }
 
-export default Index;
+export default Home;

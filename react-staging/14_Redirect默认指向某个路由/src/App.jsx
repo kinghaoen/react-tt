@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Home from './pages/Home';
-import About from './pages/About';
+import Home from './pages/home';
+import About from './pages/about';
 import {Route,Switch,Redirect} from 'react-router-dom'; //Switch只展示第一个匹配上的组件
 import MyNavLink from './components/MyNavLink';
 

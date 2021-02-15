@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import Home from './pages/Home';
-import About from './pages/About';
-import {Route,Switch,Redirect} from 'react-router-dom'; //Switch只展示第一个匹配上的组件
+import Home from './pages/home';
+import About from './pages/about';
+import {Route,Switch} from 'react-router-dom'; //Switch只展示第一个匹配上的组件
 import MyNavLink from './components/MyNavLink';
+import Test from './pages/test';
 
 import './App.css'
 
@@ -35,7 +36,7 @@ class App extends Component {
                                     <Switch>
                                         <Route path="/about" component={About} />
                                         <Route path="/home" component={Home} />
-                                        <Redirect to="/home" />
+                                        <Route path="/home" component={Test} />
                                     </Switch>
                                 </div>
                             </div>

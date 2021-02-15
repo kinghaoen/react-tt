@@ -18,8 +18,8 @@ class App extends Component {
                     <div className="row">
                         <div className="col-xs-2 col-xs-offset-2">
                             <div className="list-group">
-                                {/*<a className="list-group-item" href="./about.html">About</a>*/}
-                                {/*<a className="list-group-item active" href="./home.html">Home</a>*/}
+                                {/*<a className="list-group-item" href="./About.html">About</a>*/}
+                                {/*<a className="list-group-item active" href="./Home.html">Home</a>*/}
                                 <NavLink activeClassName="myNavLink" className="list-group-item" to="/about">About</NavLink>
                                 <NavLink activeClassName="myNavLink" className="list-group-item" to="/home">Home</NavLink>
                             </div>

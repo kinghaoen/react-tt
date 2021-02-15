@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Home from './pages/Home';
-import About from './pages/About';
-import {Route,Switch,Redirect} from 'react-router-dom'; //Switch只展示第一个匹配上的组件
+import Home from './pages/home';
+import About from './pages/about';
+import {Route,Switch} from 'react-router-dom'; //Switch只展示第一个匹配上的组件
 import MyNavLink from './components/MyNavLink';
 
 import './App.css'
@@ -25,17 +25,16 @@ class App extends Component {
                                 {/*<NavLink activeClassName="myNavLink" className="list-group-item" to="/About">About</NavLink>*/}
                                 {/*<NavLink activeClassName="myNavLink" className="list-group-item" to="/Home">Home</NavLink>*/}
 
-                                <MyNavLink to="/about" >About</MyNavLink>
-                                <MyNavLink to="/home" >Home</MyNavLink>
+                                <MyNavLink to="/nyrmt/about" >About</MyNavLink>
+                                <MyNavLink to="/nyrmt/home" >Home</MyNavLink>
                             </div>
                         </div>
                         <div className="col-xs-6">
                             <div className="panel">
                                 <div className="panel-body">
                                     <Switch>
-                                        <Route path="/about" component={About} />
-                                        <Route path="/home" component={Home} />
-                                        <Redirect to="/home" />
+                                        <Route path="/nyrmt/about" component={About} />
+                                        <Route path="/nyrmt/home" component={Home} />
                                     </Switch>
                                 </div>
                             </div>

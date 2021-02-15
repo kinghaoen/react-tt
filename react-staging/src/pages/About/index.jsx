@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class Index extends Component {
+class About extends Component {
     render() {
         return (
             <h3>我是About的内容</h3>
@@ -8,4 +8,4 @@ class Index extends Component {
     }
 }
 
-export default Index;
+export default About;
