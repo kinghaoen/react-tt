@@ -1,14 +1,15 @@
+import {INCREMENT,DECREMENT} from "./constant";
+
 /**
  * action里: type data
  */
 const initCount =0;
 export default function countReducer(previousState=initCount,action) {
     const{type,data} = action
-    console.log('@'+previousState)
     switch (type) {
-        case 'increment':
+        case INCREMENT:
             return previousState + data;
-        case 'decrement':
+        case DECREMENT:
             return previousState - data;
         default:
             return previousState;
