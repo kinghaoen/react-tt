@@ -1,10 +1,10 @@
-import {INCREMENT,DECREMENT} from "./constant";
+import {INCREMENT,DECREMENT} from "../constant";
 
 /**
  * action里: type data
  */
 const initCount =0;
-export default function countReducer(previousState=initCount,action) {
+export const countReducer= (previousState=initCount,action)=> {
     const{type,data} = action
     switch (type) {
         case INCREMENT:
