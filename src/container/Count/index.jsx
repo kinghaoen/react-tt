@@ -33,6 +33,7 @@ class CountUI extends Component {
         return (
             <div>
                 <h1>当前求和为：{this.props.count}</h1>
+                <h1>当前人数：{this.props.persons.length}</h1>
                 <select ref={c => this.selectNumber =c}>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -50,7 +51,7 @@ class CountUI extends Component {
 
 //(state)=>({count:state}) 这是函数的简写版
 export default connect(
-    (state)=>({count:state.QiuHe}),
+    (state)=>({persons:state.Ren,count:state.QiuHe}),
     {
         incrementFun:createIncrementAction,
         decrementFun:createDecrementAction,

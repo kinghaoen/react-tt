@@ -6,10 +6,9 @@ export const personReducer= (preState=initState,action)=>{
     const{type,data} = action
     switch (type) {
         case ADD_PERSON:
-            console.log('ADD_PERSON后的数据',{data,...preState})
             return [data,...preState];
         default:
-            return initState;
+            return preState;
     }
 
 }
